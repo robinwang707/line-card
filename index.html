@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>異次元科技誌 - 電子名片</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 30px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .button {
+      background-color: #06C755;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="avatar" src="https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png" alt="異次元科技誌頭像" />
+    <h2>異次元科技誌</h2>
+    <p>一起探索最新科技、AI、元宇宙與未來趨勢。</p>
+    <p><strong>📞 聯絡電話：</strong>0900-123-456</p>
+    <a href="https://lin.ee/ttSLJmp" target="_blank">
+      <button class="button">➕ 加入好友</button>
+    </a>
+    <button class="button" onclick="shareCard()">📤 分享名片給朋友</button>
+  </div>
+
+  <script>
+    async function shareCard() {
+      await liff.init({ liffId: "2007569923-Kjybgqzb" }); // ⚠️請換成你自己的 LIFF ID
+      if (liff.isInClient() || liff.isLoggedIn()) {
+        liff.shareTargetPicker([
+          {
+            type: "text",
+            text: `📇 這是「異次元科技誌」的電子名片！
+認識最新科技與未來趨勢 👉 https://your-hosting-url.com/card.html`
+          }
+        ])
+        .then(() => alert("名片已分享給朋友！"))
+        .catch(err => console.error("分享失敗", err));
+      } else {
+        liff.login();
+      }
+    }
+  </script>
+
+</body>
+</html>
