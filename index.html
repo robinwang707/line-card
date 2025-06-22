@@ -1,166 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PJdesignLINEBOT</title>
-
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-  <style>
-    :root {
-      --liff-base-background-color: #FFFFFF;
-      --liff-base-text-color: #000000;
-      --liff-title-text-color: #111111;
-      --liff-title-background-color: #FFFFFF;
-      --liff-title-button-color: #111111;
-      --liff-status-bar-color: black;
-      --liff-progress-bar-color: #06C755;
-    }
-
-    h1 {
-      width: 80%;
-      height: 40px;
-      margin-left: 10%;
-    }
-
-    h2 {
-      width: 80%;
-      height: 40px;
-      margin-left: 10%;
-      color: white;
-      font-size: 24px;
-    }
-
-    button {
-      width: 80%;
-      height: 40px;
-      margin-left: 10%;
-      background-color: #003366;
-      color: white;
-      font-weight: 600;
-      font-size: 18px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #002244;
-    }
-
-    .card-image {
-      width: 80%;
-      margin: auto;
-      display: block;
-    }
-
-    .subtitle {
-      color: #003366;
-      font-size: 20px;
-      text-align: center;
-      margin-top: 8px;
-      margin-bottom: 20px;
-    }
-  </style>
-
-  <script>
-    $(document).ready(function () {
-      liff.init({ liffId: "2007569923-Kjybgqzb" });
-    });
-
-    function liff_LINE_Card() {
-      liff.shareTargetPicker([
-        {
-          type: "flex",
-          altText: "ROBIN 的 LINE IP 微官網",
-          contents: {
-            type: "carousel",
-            contents: [
-              {
-                type: "bubble",
-                hero: {
-                  type: "image",
-                  size: "full",
-                  aspectRatio: "3:5.4",
-                  aspectMode: "cover",
-                  url: "https://github.com/robinwang707/line-card/blob/main/001.png?raw=true"
-                },
-                footer: {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
-                    {
-                      type: "button",
-                      action: {
-                        type: "uri",
-                        label: "分享名片給朋友",
-                        uri: "https://liff.line.me/2007569923-Kjybgqzb"
-                      },
-                      style: "primary",
-                      color: "#294473"
-                    }
-                  ]
-                }
-              },
-              {
-                type: "bubble",
-                hero: {
-                  type: "image",
-                  size: "full",
-                  aspectRatio: "3:5.4",
-                  aspectMode: "cover",
-                  url: "https://github.com/robinwang707/line-card/blob/main/001.png?raw=true"
-                },
-                footer: {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
-                    {
-                      type: "button",
-                      action: {
-                        type: "uri",
-                        label: "預約諮詢",
-                        uri: "https://lin.ee/642yglzg"
-                      },
-                      style: "primary",
-                      color: "#294473"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE LIFF 應用示例</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
-      ], { isMultiple: true });
-    }
-
-    function liff_closeWindow() {
-      liff.closeWindow();
-    }
-
-    function liff_shareTargetPicker() {
-      liff.shareTargetPicker([
-        {
-          type: "image",
-          originalContentUrl: "https://pjdesign.com.tw/images/line14.jpg",
-          previewImageUrl: "https://pjdesign.com.tw/images/line14.jpg"
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            padding: 20px;
+            text-align: center;
+            margin: 50px auto;
+            width: 90%;
+            max-width: 400px;
         }
-      ], { isMultiple: true });
-    }
-  </script>
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        #logoutBtn {
+            background-color: #e53935;
+        }
+        #closeBtn {
+            background-color: #4caf50;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <h1>ROBIN<br>商品設計</h1>
-  <h2></h2>
-  <img src="https://github.com/robinwang707/line-card/blob/main/001.png?raw=true" alt="電子名片圖片" class="card-image">
-  <h3 class="subtitle">robin商用名片</h3>
-  <button onclick="liff_closeWindow()">關閉新視窗</button><br><br>
-  <button onclick="liff_shareTargetPicker()">分享指定訊息</button><br><br>
-  <button onclick="liff_LINE_Card()">傳送LINE電子名片</button><br><br>
+    <div class="container">
+        <h1>LINE LIFF 應用示例</h1>
+        <div class="profile">
+            <img id="profilePicture" src="" alt="使用者頭像">
+            <p id="displayName"></p>
+        </div>
+        <button id="logoutBtn">登出</button>
+        <button id="closeBtn">關閉 LIFF</button>
+    </div>
+
+    <script>
+        // Initialize LIFF app
+        liff.init({ liffId: '2007569923-Kjybgqzb' })
+        .then(() => {
+            // Check if user is logged in
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            } else {
+                // Get user profile and display picture & name
+                liff.getProfile().then(profile => {
+                    document.getElementById('profilePicture').src = profile.pictureUrl;
+                    document.getElementById('displayName').innerText = '名稱: ' + profile.displayName;
+                }).catch(err => console.error(err));
+            }
+        })
+        .catch(err => console.error(err));
+
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            liff.logout();
+            window.location.reload();
+        });
+
+        // Close LIFF button
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            liff.closeWindow();
+        });
+    </script>
 </body>
 </html>
-
